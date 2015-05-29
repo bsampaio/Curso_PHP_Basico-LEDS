@@ -1,0 +1,8 @@
+.row.spaced {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+th, tr, td {
+  text-align: center;
+}
