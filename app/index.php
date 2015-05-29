@@ -1,5 +1,5 @@
 <?php
-  session_start();
+  if (session_id() === "") { session_start(); }
 
   function haveTodo(){
     return (isset($_POST["descricao"]) and isset($_POST["concluida"]));
@@ -35,10 +35,7 @@
       }
 
       #tarefas {
-        width: 580px;
         margin-top: 50px;
-        margin-left: auto;
-        margin-right: auto;
         background-color: #707070;
       }
 
@@ -48,6 +45,16 @@
 
       #newTodo {
         margin-top: 20px;
+      }
+
+      form, table {
+        width: 580px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      form > *{
+        float: left;
       }
 
     </style>
