@@ -30,9 +30,9 @@
 
           <div class="form-group">
             <label for="concluida">Concluida:</label>
-            Sim
+            <i class="glyphicon glyphicon-ok text-success"></i>
             <input type="radio" name="todo_concluida" value="true" <?php checkIfTrue($todo["concluida"]); ?>/>
-            Não
+            <i class="glyphicon glyphicon-remove text-danger"></i>
             <input type="radio" name="todo_concluida" value="false" <?php checkIfFalse($todo["concluida"]); ?>/>
           </div>
         </div>
