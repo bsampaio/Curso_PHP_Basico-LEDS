@@ -28,82 +28,68 @@
   <head>
     <title></title>
     <meta charset="utf8"/>
-    <style>
-      #content {
-        margin: 0px auto;
-        text-align: center;
-      }
-
-      #tarefas {
-        margin-top: 50px;
-        background-color: #707070;
-      }
-
-      th, tr, td {
-        text-align: center;
-      }
-
-      #newTodo {
-        margin-top: 20px;
-      }
-
-      form, table {
-        width: 580px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      form > *{
-        float: left;
-      }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.css" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css" charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.js"></script>
   </head>
   <body>
     <header>
     </header>
-    <div id="content">
-      <h2>Bem vindo ao 2-do</h2>
-      <table id="tarefas">
-        <thead>
-          <th>
-            Id
-          </th>
-          <th>
-            Tarefa
-          </th>
-          <th>
-            Concluida?
-          </th>
-        </thead>
-        <tbody>
-          <?php if(isset($_SESSION["Todos"])): ?>
-            <?php
-              foreach ($_SESSION["Todos"] as $id => $todo) {
-            ?>
-                <tr>
-                  <td><?= $id ?> </td>
-                  <td><?= $todo["descricao"] ?> </td>
-                  <td><?= $todo["concluida"] ?> </td>
-                </tr>
-            <?php
-              }
-            ?>
-          <?php endif; ?>
-        </tbody>
-      </table>
-      <form id="newTodo" action="./" method="post">
-            <label for="descricao">Descricao:</label>
-            <input type="text" name="descricao"/>
+    <div class="row">
+      <h2 class="text-center">Bem vindo ao 2-do</h2>
+    </div>
+    <div id="content" class="container">
+      <div class="row">
+        <form id="newTodo" action="./" method="post" class="form-inline">
+            <div class="form-group">
+              <label for="descricao">Descricao:</label>
+              <input class="form-control" type="text" name="descricao"/>
+            </div>
 
-            <label for="concluida">Concluida:</label>
-            Sim
-            <input type="radio" name="concluida" value="true"/>
-            Nao
-            <input type="radio" name="concluida" value="false" checked/>
+            <div class="form-group">
+              <label for="concluida">Concluida:</label>
+              Sim
+              <input type="radio" name="concluida" value="true"/>
+              Nao
+              <input type="radio" name="concluida" value="false" checked/>
+            </div>
+            <div class="form-group">
+              <input type="submit" name="send" value="Salvar"/>
+            </div>
+        </form>
+      </div>
+      <div class="row">
+        <table id="tarefas" class="table table-bordered table-responsive table-hover table-striped">
+          <thead>
+            <th>
+              Id
+            </th>
+            <th>
+              Tarefa
+            </th>
+            <th>
+              Concluida?
+            </th>
+          </thead>
+          <tbody>
+            <?php if(isset($_SESSION["Todos"])): ?>
+              <?php
+                foreach ($_SESSION["Todos"] as $id => $todo) {
+              ?>
+                  <tr>
+                    <td><?= $id ?> </td>
+                    <td><?= $todo["descricao"] ?> </td>
+                    <td><?= $todo["concluida"] ?> </td>
+                  </tr>
+              <?php
+                }
+              ?>
+            <?php endif; ?>
+          </tbody>
+        </table>
+      </div>
 
-            <input type="submit" name="send" value="Salvar"/>
-      </form>
     </div>
     <footer>
     </footer>
