@@ -1,75 +1,9 @@
 <?php
   if (session_id() === "") { session_start(); }
-  include_once "reload_session.php";
+  include_once "./reload_session.php";
+  include_once "./functions.php";
 
-  function newTodo(){
-    return (
-      isset($_POST["descricao"]) and
-      isset($_POST["concluida"]) and
-      !isset($_POST["id"])
-    );
-  }
-
-  function addTodo(){
-    $to_do = [
-      "descricao" => $_POST["descricao"],
-      "concluida" => $_POST["concluida"]
-    ];
-    if(!isset($_SESSION["Todos"])){
-      $_SESSION["Todos"] = [];
-      array_push($_SESSION["Todos"],$to_do);
-    }else{
-      array_push($_SESSION["Todos"],$to_do);
-    }
-  }
-
-  function hasTodo(){
-
-    if(!isset($_POST["todo_id"])){
-      return false;
-    }
-
-    $todo_id = $_POST["todo_id"];
-    return isset($_SESSION["Todos"][$todo_id]);
-  }
-
-  function editTodo($todo = null){
-    if(!$todo){
-      return false;
-    }
-    $currentTodo = &$_SESSION["Todos"][$todo["id"]];
-    return setTodo($currentTodo, $todo);
-  }
-
-  function setTodo(&$currentTodo, $todo){
-    $operation = ($currentTodo["descricao"] = $todo["descricao"]);
-    $operation = $operation and ($currentTodo["concluida"] = $todo["concluida"]);
-    return $operation;
-  }
-
-  function checkIfTrue($check){
-    if($check == 'true'){
-      echo 'checked';
-    }
-  }
-
-  function checkIfFalse($check){
-    if($check == 'false'){
-      echo 'checked';
-    }
-  }
-
-  if(newTodo()){
-    addTodo();
-  }else if(hasTodo()){
-    $todo = [
-        "id" => $_POST["todo_id"],
-        "descricao" => $_POST["todo_descricao"],
-        "concluida" => $_POST["todo_concluida"]
-    ];
-    editTodo($todo);
-  }
-
+  onLoad();
 ?>
 <!DOCTYPE html>
 <html>
@@ -138,9 +72,14 @@
                         endif;
                       ?>
                     </td>
-                    <td>
+                    <td class="text-center">
                       <!-- Editar -->
                       <?php include "./edit-modal.php" ?>
+                      <!-- Excluir -->
+                      <form class="" action="./delete.php" method="post">
+                        <input type="hidden" name="todo_id" value="<?=$id?>">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                      </form>
                     </td>
                   </tr>
               <?php
@@ -155,7 +94,7 @@
     <footer>
 
     </footer>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="./js/bootstrap.js"></script>
     <script type="text/javascript" src="./js/2do.js"></script>
