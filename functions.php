@@ -10,6 +10,7 @@
       return $pdo;
     }catch (PDOException $e){
       echo 'Error: ' . $e->getMessage();
+      die('Can\'t connect to database');
     }
   }
 

@@ -1,11 +1,7 @@
 <?php
+include_once "functions.php";
 
-$pdo = new PDO(
-  'mysql:host=localhost;dbname=2do',
-  'root',
-  ''
-);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$pdo = getConnection();
 
 $stmt = $pdo->prepare("SELECT * FROM todos");
 $stmt->execute();
