@@ -2,6 +2,7 @@
   function getConnection(){
     try{
       $herokuDbUrl = getenv("CLEARDB_DATABASE_URL");
+      
       if ($herokuDbUrl) {
         $url = parse_url($herokuDbUrl);
 
@@ -10,10 +11,12 @@
         $password = $url["pass"];
         $db = substr($url["path"], 1);
 
+        $serverDB = $server . ';' . $db;
+
         $pdo = new PDO(
-          $server . ';' . $db,
+          $serverDB,
           $username,
-          $password,
+          $password
         );
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -29,11 +32,7 @@
       );
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       return $pdo;
-<<<<<<< HEAD
 
-=======
-
->>>>>>> c4a79f27a12dc572dd1fee33384fd1dd08a62e8c
     }catch (PDOException $e){
       echo 'Error: ' . $e->getMessage();
       die('Can\'t connect to database');
