@@ -2,16 +2,20 @@
   function getConnection(){
     try{
       $herokuDbUrl = getenv("CLEARDB_DATABASE_URL");
-      
+
       if ($herokuDbUrl) {
         $url = parse_url($herokuDbUrl);
+        echo $url.'\n';
 
         $server = $url["host"];
+        echo $server.'\n';
+
         $username = $url["user"];
         $password = $url["pass"];
         $db = substr($url["path"], 1);
 
         $serverDB = $server . ';' . $db;
+        echo $serverDB.'\n';
 
         $pdo = new PDO(
           $serverDB,
