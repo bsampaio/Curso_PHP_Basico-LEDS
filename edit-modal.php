@@ -1,9 +1,9 @@
 <button type="button" class="btn btn-primary"
-  data-toggle="modal" data-target="#editTodoModal<?=$id?>">
+  data-toggle="modal" data-target="#editTodoModal<?=$todo["id"]?>">
   Editar
 </button>
 
-<div id="editTodoModal<?=$id?>" class="modal fade bs-example-modal-sm"
+<div id="editTodoModal<?=$todo["id"]?>" class="modal fade bs-example-modal-sm"
      tabindex="-1"
      role="dialog"
      aria-labelledby="mySmallModalLabel"
@@ -16,12 +16,10 @@
         </button>
         <h4 class="modal-title" id="myModalLabel">Cadastro de Tarefa</h4>
       </div>
-      <form id="editTodo" action="./" method="post">
+      <form id="editTodo" action="./edit-todo.php" method="post">
         <div class="modal-body">
-          <input type="hidden" name="todo_id" value="<?=$id?>">
-          <?php
-            $checked = 'checked';
-          ?>
+          <input type="hidden" name="todo_id" value="<?=$todo["id"]?>">
+
           <div class="form-group">
             <label for="descricao">Descrição:</label>
             <input class="form-control" type="text" name="todo_descricao"

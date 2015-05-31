@@ -15,7 +15,7 @@
         </button>
         <h4 class="modal-title" id="myModalLabel">Cadastro de Tarefa</h4>
       </div>
-      <form id="newTodo" action="./" method="post">
+      <form id="newTodo" action="./insert-todo.php" method="post">
         <div class="modal-body">
           <div class="form-group">
             <label for="descricao">Descrição:</label>

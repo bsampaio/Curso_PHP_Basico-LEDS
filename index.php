@@ -1,9 +1,5 @@
 <?php
-  if (session_id() === "") { session_start(); }
-  include_once "./reload_session.php";
   include_once "./functions.php";
-
-  onLoad();
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.css" charset="utf-8">
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.css" charset="utf-8">
     <link rel="stylesheet" type="text/css" href="./css/custom.css" charset="utf-8">
-
   </head>
   <body>
     <header>
@@ -25,14 +20,8 @@
         <h1 class="text-center">Bem vindo ao 2-do</h1>
       </div>
       <div class="row">
-        <div class="pull-left">
-          <form class="" action="./" method="post">
-            <input type="hidden" name="reload-session" value="true">
-            <button type="submit" class="btn btn-danger">Limpar</button>
-          </form>
-        </div>
         <div class="pull-right">
-          <?php include_once "./modal.php" ?>
+          <?php include_once "./new-todo-modal.php" ?>
         </div>
       </div>
       <div class="row spaced">
@@ -52,40 +41,7 @@
             </th>
           </thead>
           <tbody>
-            <?php if(isset($_SESSION["Todos"])): ?>
-              <?php
-                foreach ($_SESSION["Todos"] as $id => $todo) {
-              ?>
-                  <tr>
-                    <td><?= $id ?> </td>
-                    <td><?= $todo["descricao"] ?> </td>
-                    <td>
-                      <?php
-                        if($todo["concluida"] == 'true'):
-                      ?>
-                        <span class="glyphicon glyphicon-ok text-success"></span>
-                      <?php
-                        else:
-                      ?>
-                        <span class="glyphicon glyphicon-remove text-danger"></span>
-                      <?php
-                        endif;
-                      ?>
-                    </td>
-                    <td class="text-center">
-                      <!-- Editar -->
-                      <?php include "./edit-modal.php" ?>
-                      <!-- Excluir -->
-                      <form class="" action="./delete.php" method="post">
-                        <input type="hidden" name="todo_id" value="<?=$id?>">
-                        <button type="submit" class="btn btn-danger">Excluir</button>
-                      </form>
-                    </td>
-                  </tr>
-              <?php
-                }
-              ?>
-            <?php endif; ?>
+            <?php include "./select-todos.php" ?>
           </tbody>
         </table>
       </div>
