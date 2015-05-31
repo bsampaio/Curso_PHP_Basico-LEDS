@@ -8,17 +8,15 @@
         echo $url.'\n';
 
         $server = $url["host"];
-        echo $server.'\n';
-
         $username = $url["user"];
         $password = $url["pass"];
         $db = substr($url["path"], 1);
 
-        $serverDB = $server . ';' . $db;
-        echo $serverDB.'\n';
+        $dsn = $url["scheme"].':'.'host='.$server.';dbname='.$db;
+        echo $dsn;
 
         $pdo = new PDO(
-          $serverDB,
+          $dsn,
           $username,
           $password
         );
