@@ -29,7 +29,11 @@
       );
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       return $pdo;
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> c4a79f27a12dc572dd1fee33384fd1dd08a62e8c
     }catch (PDOException $e){
       echo 'Error: ' . $e->getMessage();
       die('Can\'t connect to database');
