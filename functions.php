@@ -2,7 +2,7 @@
   function getConnection(){
     try{
       $herokuDbUrl = getenv("CLEARDB_DATABASE_URL");
-      if (isset($herokuDbUrl)) {
+      if ($herokuDbUrl) {
         $url = parse_url($herokuDbUrl);
 
         $server = $url["host"];
