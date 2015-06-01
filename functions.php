@@ -5,7 +5,6 @@
 
       if ($herokuDbUrl) {
         $url = parse_url($herokuDbUrl);
-        echo $url.'\n';
 
         $server = $url["host"];
         $username = $url["user"];
