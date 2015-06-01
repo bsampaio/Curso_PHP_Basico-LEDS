@@ -11,9 +11,9 @@
         $username = $url["user"];
         $password = $url["pass"];
         $db = substr($url["path"], 1);
-
-        $dsn = $url["scheme"].':'.'host='.$server.';dbname='.$db;
-        echo $dsn;
+        $scheme = $url["scheme"];
+        
+        $dsn = "$scheme:host=$server; dbname=$db;";
 
         $pdo = new PDO(
           $dsn,
